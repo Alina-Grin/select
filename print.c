@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: szeftyr <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/25 11:15:04 by szeftyr           #+#    #+#             */
+/*   Updated: 2020/11/25 11:39:21 by szeftyr          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_select.h"
 
 static void	putstr_color(t_args *elem)
@@ -19,7 +31,7 @@ static void	putstr_color(t_args *elem)
 	tputs(DEFAULT_COLOR, 1, put);
 }
 
-void		print_elem(t_args *elem, int max_len)
+static void	print_elem(t_args *elem, int max_len)
 {
 	int				len;
 
@@ -31,6 +43,23 @@ void		print_elem(t_args *elem, int max_len)
 	putstr_color(elem);
 	while (++len <= max_len)
 		tputs(" ", 1, put);
+}
+
+static int	printing(t_args *elem, int max_len, int *counter, int colcount)
+{
+	print_elem(elem, max_len);
+	(*counter)++;
+	if (*counter == colcount)
+	{
+		tputs("\n", 1, put);
+		*counter = 0;
+	}
+	if (elem->next == g_select.g_series_args)
+	{
+		tputs("\n", 1, put);
+		return (1);
+	}
+	return (0);
 }
 
 int			print_column(void)
@@ -55,19 +84,8 @@ int			print_column(void)
 	tputs(tgetstr("cl", 0), 1, put);
 	while (tmp)
 	{
-		// tputs(NORM, 1, put);
-		print_elem(tmp, max_len);
-		counter++;
-		if (counter == colcount)
-		{
-			tputs("\n", 1, put);
-			counter = 0;
-		}
-		if (tmp->next == g_select.g_series_args)
-		{
-			tputs("\n", 1, put);
+		if (printing(tmp, max_len, &counter, colcount))
 			break ;
-		}
 		tmp = tmp->next;
 	}
 	return (colcount);

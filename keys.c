@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   keys.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: szeftyr <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/25 11:15:22 by szeftyr           #+#    #+#             */
+/*   Updated: 2020/11/25 11:16:42 by szeftyr          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_select.h"
 
 static void	erase_elem(void)
@@ -67,7 +79,7 @@ static void	go_down(int cols)
 		g_select.current = &tmp->next;
 }
 
-int	get_key(int key, int columns)
+int			get_key(int key, int columns)
 {
 	if (key == QUIT)
 		process_signals(SIGQUIT);

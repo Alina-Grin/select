@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_select.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: szeftyr <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/25 11:15:30 by szeftyr           #+#    #+#             */
+/*   Updated: 2020/11/25 11:15:31 by szeftyr          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_SELECT_H
 # define FT_SELECT_H
 
@@ -70,15 +82,14 @@ typedef struct					s_config
 
 t_config						g_select;
 
-void							handle_errors(char *description);
+void							print_error(char *msg);
 void							init_tty(void);
 void							leave_tty(void);
 int								put(int n);
 void							handle_signals(void);
 void							process_signals(int signo);
-void							fill_catalog(char **av);
-void							add_node(char *value);
-void							free_catalog(void);
+void							create_list_args(char **av);
+void							free_list_args(void);
 void							ft_select(void);
 int								ft_get_maxlen(void);
 int								print_column(void);

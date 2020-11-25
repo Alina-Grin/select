@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_select.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: szeftyr <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/25 11:15:24 by szeftyr           #+#    #+#             */
+/*   Updated: 2020/11/25 11:15:25 by szeftyr          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_select.h"
 
 void		interrogate_terminal(void)
@@ -19,14 +31,14 @@ void		init_tty(void)
 
 	g_select.terminal.fd = open(ttyname(STDIN_FILENO), O_RDWR | O_NOCTTY);
 	if (!(g_select.terminal.tty_name = getenv("TERM")))
-		handle_errors("Could not find the terminal name.\n");
+		print_error("Could not find the terminal name.\n");
 	if (!isatty(g_select.terminal.fd))
-		handle_errors("should be run in a terminal\n");
+		print_error("should be run in a terminal\n");
 	res = tgetent(NULL, g_select.terminal.tty_name);
 	if (res < 0)
-		handle_errors("Could not access the termcap data base.\n");
+		print_error("Could not access the termcap data base.\n");
 	if (!res)
-		handle_errors("Have not an entry to data base.\n");
+		print_error("Have not an entry to data base.\n");
 	interrogate_terminal();
 	tcgetattr(STDIN_FILENO, &g_select.terminal.def_attr);
 	tcgetattr(g_select.terminal.fd, &g_select.terminal.attr);
@@ -62,10 +74,10 @@ int			main(int ac, char **av)
 	init_tty();
 	handle_signals();
 	g_select.count = ac - 1;
-	fill_catalog(&av[1]);
+	create_list_args(&av[1]);
 	ft_select();
 	leave_tty();
 	print_selected();
-	free_catalog();
+	free_list_args();
 	return (0);
 }

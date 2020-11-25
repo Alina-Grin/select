@@ -1,4 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   secondary.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: szeftyr <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/25 11:15:12 by szeftyr           #+#    #+#             */
+/*   Updated: 2020/11/25 12:12:34 by szeftyr          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_select.h"
+
+void	print_error(char *msg)
+{
+	ft_putstr_fd("ft_select: ", STDERR_FILENO);
+	ft_putstr_fd(msg, STDERR_FILENO);
+	leave_tty();
+	exit(EXIT_FAILURE);
+}
 
 int		ft_get_maxlen(void)
 {
@@ -30,38 +50,5 @@ void	leave_tty(void)
 
 int		put(int c)
 {
-	// return(write(g_fd, &c, 1));
-	return(write(g_select.terminal.fd, &c, 1));
+	return (write(g_select.terminal.fd, &c, 1));
 }
-
-// int		count_col(void)
-// {
-// 	int				count_col;
-
-// 	count_col = g_cols / (g_max + 1);
-// 	return (count_col);
-// }
-
-// void drawTitle (int cols)
-// {
-// 	int		n;
-// 	int		length;
-// 	char	*title;
-// 	char	*so;
-// 	char	*se;
-	
-// 	length = ft_strlen(title);
-// 	title = "(SPACE) to select, (I) to inverse selection, (ESC) to quit, (ENTER) to return selections";
-// 	gotoXY (0, y);
-// 	if (so = tgetstr("so", 0))
-// 		tputs (so, 1, put);
-// 	n = -1;
-// 	while (++n < (cols - length) / 2)
-// 		tputs(" ", 1, put);
-// 	tputs(title, 1, put);
-// 	n += length;
-// 	while (n++ < cols - 1)
-// 		tputs(" ", 1, put);
-// 	if (se = tgetstr("se", 0))
-// 		tputs (se, 1, put);
-// }

@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   signal.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: szeftyr <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/25 11:15:20 by szeftyr           #+#    #+#             */
+/*   Updated: 2020/11/25 11:15:21 by szeftyr          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_select.h"
 
 static void	terminate_selection(void)
 {
 	leave_tty();
-	free_catalog();
+	free_list_args();
 	signal(SIGTSTP, SIG_DFL);
 	exit(EXIT_SUCCESS);
 }

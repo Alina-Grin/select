@@ -1,8 +1,20 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: szeftyr <marvin@42.fr>                     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/11/25 11:15:16 by szeftyr           #+#    #+#              #
+#    Updated: 2020/11/25 11:15:17 by szeftyr          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -g
 
-SRCS = ft_select.c args.c secondary.c print.c signal.c keys.c errors.c
+SRCS = ft_select.c args.c secondary.c print.c signal.c keys.c
 
 DIR = libft/libft.a
 

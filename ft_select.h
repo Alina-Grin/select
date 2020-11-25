@@ -6,7 +6,7 @@
 /*   By: szeftyr <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 11:15:30 by szeftyr           #+#    #+#             */
-/*   Updated: 2020/11/25 11:15:31 by szeftyr          ###   ########.fr       */
+/*   Updated: 2020/11/25 15:52:09 by szeftyr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 # include <unistd.h>
 # include <sys/stat.h>
 
-# define D_COLOR				"\033[1;36m"
-# define F_COLOR				"\033[34m"
-# define B_COLOR				"\033[35m"
-# define OTH_COLOR				"\033[33m"
+# define D_COLOR				"\033[38;5;37m"
+# define F_COLOR				"\033[38;5;150m"
+# define B_COLOR				"\033[38;5;209m"
+# define OTH_COLOR				"\033[38;5;109m"
 # define DEFAULT_COLOR			"\033[0m"
 # define SELECTED				"\033[07m"
 # define UNDERLINED				"\033[04m"
@@ -77,7 +77,6 @@ typedef struct					s_config
 	t_args						**current;
 	t_args						*g_series_args;
 	int							count;
-	int							cols;
 }								t_config;
 
 t_config						g_select;
@@ -95,5 +94,6 @@ int								ft_get_maxlen(void);
 int								print_column(void);
 void							print_selected(void);
 int								get_key(int key, int columns);
+void							printfooter(void);
 
 #endif

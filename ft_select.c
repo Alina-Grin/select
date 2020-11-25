@@ -6,7 +6,7 @@
 /*   By: szeftyr <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 11:15:24 by szeftyr           #+#    #+#             */
-/*   Updated: 2020/11/25 11:15:25 by szeftyr          ###   ########.fr       */
+/*   Updated: 2020/11/25 15:51:52 by szeftyr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void		ft_select(void)
 	while (1)
 	{
 		cols = print_column();
+		printfooter();
 		key = 0;
 		read(STDIN_FILENO, &key, sizeof(key));
 		if (get_key(key, cols))

@@ -6,7 +6,7 @@
 /*   By: szeftyr <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 11:15:20 by szeftyr           #+#    #+#             */
-/*   Updated: 2020/11/25 11:15:21 by szeftyr          ###   ########.fr       */
+/*   Updated: 2020/11/25 15:51:57 by szeftyr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,16 @@ static void	resume_selection(void)
 	init_tty();
 	handle_signals();
 	print_column();
+	printfooter();
 }
 
 void		process_signals(int sig)
 {
 	if (sig == SIGWINCH)
+	{
 		print_column();
+		printfooter();
+	}
 	else if (sig == SIGTSTP)
 		pause_selection();
 	else if (sig == SIGCONT)

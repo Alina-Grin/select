@@ -6,7 +6,7 @@
 /*   By: szeftyr <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 11:15:04 by szeftyr           #+#    #+#             */
-/*   Updated: 2020/11/25 11:39:21 by szeftyr          ###   ########.fr       */
+/*   Updated: 2020/11/25 16:00:24 by szeftyr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,18 @@ static void	print_elem(t_args *elem, int max_len)
 	if (elem->selected)
 		tputs(g_select.terminal.reverse, 1, put);
 	putstr_color(elem);
-	while (++len <= max_len)
-		tputs(" ", 1, put);
+	if (elem->next != g_select.g_series_args)
+	{
+		while (++len <= max_len)
+			tputs(" ", 1, put);
+	}
 }
 
 static int	printing(t_args *elem, int max_len, int *counter, int colcount)
 {
 	print_elem(elem, max_len);
 	(*counter)++;
-	if (*counter == colcount)
+	if (*counter == colcount && elem->next != g_select.g_series_args)
 	{
 		tputs("\n", 1, put);
 		*counter = 0;
